@@ -215,17 +215,8 @@
         </a>
       </h1>
 
-      <!-- Navigation Drawer (PC & Mobile) -->
-      <nav class="lnbG" role="navigation" aria-label="메인 메뉴">
-        <!-- Mobile Drawer Header -->
-        <div class="mobile-header _mo">
-          <div class="logo-text">
-            <span class="logo-en" style="color:#fff; font-size:20px;">THE SUNSET</span>
-            <span class="logo-ko" style="color:var(--main-color); font-size:12px;">더선셋 캠핑장</span>
-          </div>
-          <div class="close" title="메뉴 닫기"><i class="fa-solid fa-xmark"></i></div>
-        </div>
-
+      <!-- Desktop Navigation (PC Only) -->
+      <nav class="lnbG _pc" role="navigation" aria-label="데스크톱 메인 메뉴">
         <ul class="menu">
           <li>
             <a href="#about">캠핑장소개</a>
@@ -266,7 +257,7 @@
             <div class="sub">
               <dl>
                 <dd><a href="#reviews">땡큐캠핑 실제후기</a></dd>
-                <dd><a href="https://m.thankqcamping.com/resv/view.hbb?cseq=20430" target="_blank">후기 전체보기 (60건)</a></dd>
+                <dd><a href="https://m.thankqcamping.com/resv/view.hbb?cseq=20430" target="_blank" rel="noopener noreferrer">후기 전체보기 (60건)</a></dd>
               </dl>
             </div>
           </li>
@@ -292,26 +283,146 @@
             </div>
           </li>
           <li>
-            <a href="https://m.thankqcamping.com/resv/view.hbb?cseq=20430" target="_blank" style="color:#ffbc85; font-weight:600;" title="땡큐캠핑 실시간 예약">실시간예약</a>
+            <a href="https://m.thankqcamping.com/resv/view.hbb?cseq=20430" target="_blank" rel="noopener noreferrer" style="color:#ffbc85; font-weight:600;" title="땡큐캠핑 실시간 예약">실시간예약</a>
           </li>
         </ul>
       </nav>
 
       <!-- Header Right Utilities -->
       <div class="gnbG">
-        <button class="btn-header-map _pc" onclick="openMapModal()" title="전체 시설배치도 보기">
+        <button type="button" class="btn-header-map _pc" onclick="openMapModal()" title="전체 시설배치도 보기">
           <i class="fa-solid fa-map-location-dot"></i>
           <span>배치도</span>
         </button>
-        <a href="https://m.thankqcamping.com/resv/view.hbb?cseq=20430" target="_blank" class="btn-header-rsvt _pc" title="땡큐캠핑 실시간 예약하기">
+        <a href="https://m.thankqcamping.com/resv/view.hbb?cseq=20430" target="_blank" rel="noopener noreferrer" class="btn-header-rsvt _pc" title="땡큐캠핑 실시간 예약하기">
           <i class="fa-solid fa-calendar-check"></i>
           <span>실시간 예약</span>
         </a>
-        <div class="lnbG_open" title="모바일 메뉴 열기"><i class="fa-solid fa-bars"></i></div>
+        <button type="button" class="lnbG_open _mo" id="mobileDrawerOpenBtn" aria-label="모바일 메뉴 열기" title="모바일 메뉴 열기">
+          <i class="fa-solid fa-bars"></i>
+        </button>
       </div>
     </div>
   </header>
-  <div class="lnbG_bg"></div>
+
+  <!-- ==========================================================================
+       MOBILE NAVIGATION DRAWER & BACKDROP OVERLAY (Separated from Header)
+       ========================================================================== -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay"></div>
+
+  <nav class="mobile-drawer" id="mobileDrawer" role="navigation" aria-label="모바일 전체 메뉴">
+    <!-- Drawer Top Header -->
+    <div class="mobile-drawer-header">
+      <div class="logo-text">
+        <span class="logo-en">THE SUNSET</span>
+        <span class="logo-ko">더선셋 캠핑장</span>
+      </div>
+      <button type="button" class="mobile-drawer-close" id="mobileDrawerCloseBtn" aria-label="메뉴 닫기" title="메뉴 닫기">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Quick Action Buttons in Drawer -->
+    <div class="mobile-drawer-actions">
+      <a href="https://m.thankqcamping.com/resv/view.hbb?cseq=20430" target="_blank" rel="noopener noreferrer" class="m-action-btn primary">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>실시간 예약하기</span>
+      </a>
+      <button type="button" class="m-action-btn outline" onclick="openMapModal(); closeMobileNav();">
+        <i class="fa-solid fa-map-location-dot"></i>
+        <span>전체 배치도 보기</span>
+      </button>
+    </div>
+
+    <!-- Drawer Navigation Accordion Menu -->
+    <ul class="mobile-menu-list">
+      <li class="m-menu-item has-sub">
+        <a href="javascript:void(0)" class="m-menu-link">
+          <span>캠핑장소개</span>
+          <i class="fa-solid fa-chevron-down arrow"></i>
+        </a>
+        <div class="m-sub-menu">
+          <a href="#about" class="m-sub-link">인사말 & 소개</a>
+          <a href="#sites" class="m-sub-link">황홀한 노을전경</a>
+          <a href="javascript:void(0)" onclick="openMapModal(); closeMobileNav();" class="m-sub-link">전체 시설배치도</a>
+          <a href="#location" class="m-sub-link">오시는 길</a>
+        </div>
+      </li>
+      <li class="m-menu-item has-sub">
+        <a href="javascript:void(0)" class="m-menu-link">
+          <span>시설안내 (사이트)</span>
+          <i class="fa-solid fa-chevron-down arrow"></i>
+        </a>
+        <div class="m-sub-menu">
+          <a href="javascript:void(0)" onclick="openSiteModal('A'); closeMobileNav();" class="m-sub-link">A구역 (노을1열 바다뷰)</a>
+          <a href="javascript:void(0)" onclick="openSiteModal('B'); closeMobileNav();" class="m-sub-link">B·C구역 (파노라마 뷰)</a>
+          <a href="javascript:void(0)" onclick="openSiteModal('D'); closeMobileNav();" class="m-sub-link">D구역 (프리미엄 우드데크)</a>
+          <a href="javascript:void(0)" onclick="openSiteModal('E'); closeMobileNav();" class="m-sub-link">E구역 (반려견 동반전용)</a>
+          <a href="javascript:void(0)" onclick="openSiteModal('F'); closeMobileNav();" class="m-sub-link">F·P구역 (차박/카라반/캠핑카)</a>
+        </div>
+      </li>
+      <li class="m-menu-item has-sub">
+        <a href="javascript:void(0)" class="m-menu-link">
+          <span>편의 & 부대시설</span>
+          <i class="fa-solid fa-chevron-down arrow"></i>
+        </a>
+        <div class="m-sub-menu">
+          <a href="#facilities" class="m-sub-link">개별 온수 샤워실 (냉난방)</a>
+          <a href="#facilities" class="m-sub-link">실내 온수 개수대 & 냉장고</a>
+          <a href="#facilities" class="m-sub-link">캠핑 매점 & 카페테리아</a>
+          <a href="#facilities" class="m-sub-link">오션뷰 힐링 산책데크</a>
+        </div>
+      </li>
+      <li class="m-menu-item has-sub">
+        <a href="javascript:void(0)" class="m-menu-link">
+          <span>이용후기</span>
+          <i class="fa-solid fa-chevron-down arrow"></i>
+        </a>
+        <div class="m-sub-menu">
+          <a href="#reviews" class="m-sub-link">생생 캠퍼 이용후기</a>
+          <a href="https://m.thankqcamping.com/resv/view.hbb?cseq=20430" target="_blank" rel="noopener noreferrer" class="m-sub-link highlight">땡큐캠핑 후기 전체보기 (60건)</a>
+        </div>
+      </li>
+      <li class="m-menu-item has-sub">
+        <a href="javascript:void(0)" class="m-menu-link">
+          <span>이용수칙 & 환불규정</span>
+          <i class="fa-solid fa-chevron-down arrow"></i>
+        </a>
+        <div class="m-sub-menu">
+          <a href="#policy" class="m-sub-link">캠핑장 에티켓 4대 강령</a>
+          <a href="#policy" class="m-sub-link">표준 환불 규정 기준</a>
+          <a href="#notices" class="m-sub-link">공지사항 & 필수 안내</a>
+        </div>
+      </li>
+      <li class="m-menu-item has-sub">
+        <a href="javascript:void(0)" class="m-menu-link">
+          <span>주변 관광여행</span>
+          <i class="fa-solid fa-chevron-down arrow"></i>
+        </a>
+        <div class="m-sub-menu">
+          <a href="#tour" class="m-sub-link">남당항 해양분수공원</a>
+          <a href="#tour" class="m-sub-link">홍성스카이타워</a>
+          <a href="#tour" class="m-sub-link">속동전망대 & 해안도로</a>
+          <a href="#tour" class="m-sub-link">서산 간월암 낙조</a>
+        </div>
+      </li>
+      <li class="m-menu-item single">
+        <a href="https://m.thankqcamping.com/resv/view.hbb?cseq=20430" target="_blank" rel="noopener noreferrer" class="m-menu-link rsvt-highlight">
+          <span>땡큐캠핑 실시간 예약</span>
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Drawer Footer Info -->
+    <div class="mobile-drawer-footer">
+      <a href="tel:0507-1332-5207" class="drawer-tel-btn">
+        <i class="fa-solid fa-phone"></i>
+        <span>0507-1332-5207 예약·상담 전화</span>
+      </a>
+      <p class="drawer-address">충남 홍성군 서부면 남당항로213번길 126</p>
+    </div>
+  </nav>
 
   <!-- ==========================================================================
        MAIN CONTENT CONTAINER
@@ -453,11 +564,6 @@
                 <span>카라반·캠핑카 전용 광폭 사이트</span>
               </div>
             </div>
-
-            <a href="https://m.thankqcamping.com/resv/view.hbb?cseq=20430" target="_blank" class="btn-hero-primary" style="display:inline-flex;">
-              <span>더선셋 스토리 둘러보기</span>
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
           </div>
 
           <div class="intro-image-wrap" data-aos="fade-left">
@@ -1031,17 +1137,6 @@
               <p>• <strong>기상 이변 특약</strong>: 기상청 발표 호우경보, 태풍경보 등 천재지변으로 인한 안전 위험 발생 시 땡큐캠핑 규정에 따라 100% 전액 환불 또는 일정 변경이 지원됩니다.</p>
               <p>• <strong>예약 변경</strong>: 예약 일정 변경은 취소 후 재예약으로 진행되므로 기준일별 취소 수수료가 발생할 수 있습니다.</p>
             </div>
-
-            <div class="refund-btn-wrap">
-              <a href="https://m.thankqcamping.com/resv/view.hbb?cseq=20430" target="_blank" class="btn-rsvt-check">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <span>예약 확인 / 취소</span>
-              </a>
-              <a href="https://m.thankqcamping.com/resv/view.hbb?cseq=20430" target="_blank" class="btn-rsvt-direct">
-                <i class="fa-solid fa-calendar-check"></i>
-                <span>실시간 예약하기</span>
-              </a>
-            </div>
           </div>
         </div>
       </div>
@@ -1060,25 +1155,45 @@
         </div>
 
         <div class="notices-list" data-aos="fade-up">
-          <div class="notice-row" onclick="location.href='https://m.thankqcamping.com/resv/view.hbb?cseq=20430'">
+          <div class="notice-row" onclick="openNoticeModal(1)" role="button" tabindex="0" title="공지사항 상세 내용 보기">
             <span class="notice-badge req">필독</span>
-            <span class="notice-title">반려견 동반 이용 정책 안내 (오직 E 사이트만 동반 가능 / 리드줄 상시 착용 필수)</span>
+            <span class="notice-title">더선셋 캠핑장 반려동물 동반 이용에 관한 안내 (오직 E 사이트만 가능 / 타 사이트 절대 불가)</span>
             <span class="notice-date">2026.10.16</span>
           </div>
-          <div class="notice-row" onclick="location.href='https://m.thankqcamping.com/resv/view.hbb?cseq=20430'">
+          <div class="notice-row" onclick="openNoticeModal(2)" role="button" tabindex="0" title="공지사항 상세 내용 보기">
             <span class="notice-badge info">소식</span>
-            <span class="notice-title">더선셋 캠핑장 26-27년 동계 장박 예약 오픈 안내 (선착순 접수)</span>
-            <span class="notice-date">2026.10.05</span>
+            <span class="notice-title">더선셋 캠핑장 2026–2027 동계 장박 예약 오픈 안내 (H·A사이트 접수)</span>
+            <span class="notice-date">2026.10.15</span>
           </div>
-          <div class="notice-row" onclick="location.href='https://m.thankqcamping.com/resv/view.hbb?cseq=20430'">
-            <span class="notice-badge info">혜택</span>
-            <span class="notice-title">[상시 혜택] 사이트당 1박에 무료음료 쿠폰 1장 증정 이벤트 진행 중</span>
-            <span class="notice-date">2026.09.20</span>
+          <div class="notice-row" onclick="openNoticeModal(3)" role="button" tabindex="0" title="공지사항 상세 내용 보기">
+            <span class="notice-badge info">이벤트</span>
+            <span class="notice-title">🎃 더선셋 캠핑장 할로윈 이벤트 안내 (포토존·텐트콘테스트·Trick or Treat) 🎃</span>
+            <span class="notice-date">2026.10.01</span>
           </div>
-          <div class="notice-row" onclick="location.href='https://m.thankqcamping.com/resv/view.hbb?cseq=20430'">
+          <div class="notice-row" onclick="openNoticeModal(4)" role="button" tabindex="0" title="공지사항 상세 내용 보기">
+            <span class="notice-badge info">소식</span>
+            <span class="notice-title">더선셋 캠핑장 매점 오픈 안내 (참나무장작·남당항 제철대하·홍성한돈 완비)</span>
+            <span class="notice-date">2026.09.30</span>
+          </div>
+          <div class="notice-row" onclick="openNoticeModal(5)" role="button" tabindex="0" title="공지사항 상세 내용 보기">
+            <span class="notice-badge guide">안내</span>
+            <span class="notice-title">더선셋 캠핑장 정기 방역 & 위생관리 소독 안내</span>
+            <span class="notice-date">2026.09.09</span>
+          </div>
+          <div class="notice-row" onclick="openNoticeModal(6)" role="button" tabindex="0" title="공지사항 상세 내용 보기">
             <span class="notice-badge req">필독</span>
-            <span class="notice-title">예약 유의사항 및 매너타임(22:00~08:00) 준수 협조의 건</span>
-            <span class="notice-date">2026.09.01</span>
+            <span class="notice-title">더선셋 캠핑장 오시는 길 & 진입로 안내 (승용차 정문 / 카라반·캠핑카 후문)</span>
+            <span class="notice-date">2026.09.03</span>
+          </div>
+          <div class="notice-row" onclick="openNoticeModal(7)" role="button" tabindex="0" title="공지사항 상세 내용 보기">
+            <span class="notice-badge info">혜택</span>
+            <span class="notice-title">[상시혜택] 사이트당 1박에 무료음료 쿠폰 1장 증정 이벤트</span>
+            <span class="notice-date">2026.08.27</span>
+          </div>
+          <div class="notice-row" onclick="openNoticeModal(8)" role="button" tabindex="0" title="공지사항 상세 내용 보기">
+            <span class="notice-badge req">필독</span>
+            <span class="notice-title">더선셋 캠핑장 기본 운영정책 (입·퇴실 시간 준수 및 매너타임 협조 안내)</span>
+            <span class="notice-date">2026.08.24</span>
           </div>
         </div>
       </div>
@@ -1178,17 +1293,6 @@
                 <strong>내비게이션 검색</strong>
                 <p>'더선셋 캠핑장' 또는 '홍성군 남당항로213번길 126' 검색</p>
               </div>
-            </div>
-
-            <div style="margin-top: 30px; display:flex; gap:12px; flex-wrap:wrap;">
-              <a href="tel:0507-1332-5207" class="btn-hero-primary" style="padding:12px 26px; font-size:15px;" title="더선셋 캠핑장 전화 걸기">
-                <i class="fa-solid fa-phone"></i>
-                <span>전화 상담하기</span>
-              </a>
-              <a href="https://m.thankqcamping.com/resv/view.hbb?cseq=20430" target="_blank" class="btn-hero-outline" style="background:var(--dark-color); border-color:var(--dark-color); color:#fff !important; padding:12px 26px; font-size:15px;" title="땡큐캠핑 예약">
-                <i class="fa-solid fa-calendar-check"></i>
-                <span>땡큐캠핑 예약하기</span>
-              </a>
             </div>
           </div>
         </div>
@@ -1307,6 +1411,18 @@
     <div class="modal-content" id="siteModalContent">
       <button type="button" class="modal-close-btn" id="siteModalClose" title="상세보기 닫기"><i class="fa-solid fa-xmark"></i></button>
       <div id="siteModalBody">
+        <!-- Dynamically populated via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 3: NOTICE DETAIL MODAL (공지사항 & 운영정책 팝업)
+       ========================================================================== -->
+  <div class="modal-overlay" id="noticeModal" role="dialog" aria-modal="true" aria-labelledby="noticeModalTitle">
+    <div class="modal-content" id="noticeModalContent" style="max-width: 780px;">
+      <button type="button" class="modal-close-btn" id="noticeModalClose" title="공지사항 닫기"><i class="fa-solid fa-xmark"></i></button>
+      <div id="noticeModalBody">
         <!-- Dynamically populated via JS -->
       </div>
     </div>

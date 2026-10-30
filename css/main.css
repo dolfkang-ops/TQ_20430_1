@@ -1333,16 +1333,22 @@
   align-items: center;
   padding: 22px 28px;
   border-bottom: 1px solid var(--border-color);
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
   cursor: pointer;
+  user-select: none;
 }
 
 .notice-row:last-child {
   border-bottom: none;
 }
 
-.notice-row:hover {
-  background: #fdfaf6;
+.notice-row:hover,
+.notice-row:focus-visible {
+  background: #fdf6ee;
+}
+
+.notice-row:hover .notice-title {
+  color: var(--main-color);
 }
 
 .notice-badge {
@@ -1362,6 +1368,11 @@
 .notice-badge.info {
   background: rgba(43, 92, 70, 0.12);
   color: var(--point-color);
+}
+
+.notice-badge.guide {
+  background: rgba(41, 128, 185, 0.12);
+  color: #2980b9;
 }
 
 .notice-title {

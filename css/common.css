@@ -1,9 +1,11 @@
 /* ==========================================================================
-   THE SUNSET CAMPING - COMMON STYLESHEET (Refined & Perfected)
-   Faithfully inspired by https://www.moonlightcamp.kr/css/common.css
+   THE SUNSET CAMPING - COMMON STYLESHEET (With Button Font Update)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+/* Google Fonts & Premium Typography */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+KR:wght@300;400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+/* Pretendard & GmarketSans for Modern High-Impact Action Buttons */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 
 /* --- Root Design System --- */
 :root {
@@ -22,7 +24,11 @@
   --border-light: rgba(255, 255, 255, 0.15);
   --white: #ffffff;
   
-  --tit-font: 'Playfair Display', Georgia, serif;
+  /* Typography Variables */
+  --hero-en-font: 'Cinzel', 'Playfair Display', Georgia, serif;
+  --hero-ko-font: 'Noto Serif KR', 'Batang', serif;
+  --tit-font: 'Cinzel', 'Playfair Display', Georgia, serif;
+  --btn-font: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --body-font: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
@@ -68,12 +74,16 @@ button {
   border: none;
   background: none;
   cursor: pointer;
-  font-family: inherit;
+  font-family: var(--btn-font);
   font-size: inherit;
 }
 
 .fontP {
   font-family: var(--tit-font) !important;
+}
+
+.fontHeroKo {
+  font-family: var(--hero-ko-font) !important;
 }
 
 /* --- Container Wrappers --- */
@@ -95,7 +105,6 @@ button {
 
 /* ==========================================================================
    HEADER & GNB NAVIGATION (.hsec1)
-   Moonlightcamp Style Glassmorphism & Dropdown Navigation
    ========================================================================== */
 .hsec1 {
   position: fixed;
@@ -104,7 +113,7 @@ button {
   width: 100%;
   z-index: 1000;
   transition: background-color 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 100%);
   padding: 18px 0;
 }
 
@@ -122,7 +131,7 @@ button {
   justify-content: space-between;
 }
 
-/* Brand Logo */
+/* Brand Logo (Using Refined Cinzel Font) */
 .hsec1 h1.logo {
   margin: 0;
   line-height: 1;
@@ -156,18 +165,19 @@ button {
 }
 
 .hsec1 .logo-en {
-  font-family: var(--tit-font);
-  font-size: 23px;
+  font-family: var(--hero-en-font);
+  font-size: 22px;
   font-weight: 700;
-  letter-spacing: 2.5px;
+  letter-spacing: 3px;
   color: #ffffff;
   line-height: 1.1;
   white-space: nowrap;
 }
 
 .hsec1 .logo-ko {
+  font-family: var(--hero-ko-font);
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 3px;
   color: rgba(255, 255, 255, 0.85);
   margin-top: 3px;
@@ -221,7 +231,7 @@ button {
   width: 100%;
 }
 
-/* Sub Dropdown Menu with Hover Bridge (No gap closing bug) */
+/* Sub Dropdown Menu with Hover Bridge */
 .hsec1 .menu > li .sub {
   position: absolute;
   top: 100%;
@@ -241,7 +251,6 @@ button {
   pointer-events: none;
 }
 
-/* Invisible bridge so mouse doesn't drop hover when moving from menu to sub */
 .hsec1 .menu > li .sub::before {
   content: '';
   position: absolute;
@@ -283,7 +292,7 @@ button {
   padding-left: 24px;
 }
 
-/* Header Right Buttons (GNB) */
+/* Header Right Buttons with Updated Button Font */
 .hsec1 .gnbG {
   display: flex;
   align-items: center;
@@ -297,8 +306,10 @@ button {
   gap: 8px;
   background: linear-gradient(135deg, var(--main-color), #eb8238);
   color: #ffffff !important;
+  font-family: var(--btn-font);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: -0.3px;
   padding: 10px 22px;
   border-radius: 30px;
   box-shadow: 0 4px 15px rgba(217, 111, 39, 0.35);
@@ -318,8 +329,10 @@ button {
   gap: 6px;
   border: 1px solid rgba(255, 255, 255, 0.45);
   color: #ffffff !important;
+  font-family: var(--btn-font);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: -0.3px;
   padding: 9px 18px;
   border-radius: 30px;
   backdrop-filter: blur(4px);
@@ -361,7 +374,6 @@ a._pc, button._pc { display: inline-flex; }
 
 /* ==========================================================================
    FOOTER (footer, fsec1)
-   Moonlightcamp Style Two-Tone Dark Footer
    ========================================================================== */
 #footer {
   background: #121215;
@@ -389,14 +401,15 @@ a._pc, button._pc { display: inline-flex; }
 }
 
 .footer-brand .ft-logo-en {
-  font-family: var(--tit-font);
+  font-family: var(--hero-en-font);
   font-size: 22px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 2.5px;
   color: #ffffff;
 }
 
 .footer-brand .ft-logo-ko {
+  font-family: var(--hero-ko-font);
   font-size: 13px;
   letter-spacing: 2px;
   color: rgba(255, 255, 255, 0.65);
@@ -451,8 +464,9 @@ a._pc, button._pc { display: inline-flex; }
 }
 
 .company_con .quick-links a {
+  font-family: var(--btn-font);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   color: rgba(255, 255, 255, 0.85);
   transition: color 0.2s ease;
 }
@@ -463,7 +477,7 @@ a._pc, button._pc { display: inline-flex; }
 
 .company_con .quick-links a.highlight {
   color: #ffbc85;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .company_con .contactG {
@@ -533,6 +547,7 @@ a._pc, button._pc { display: inline-flex; }
   transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
   position: relative;
   text-align: center;
+  font-family: var(--btn-font);
 }
 
 .quick_menu .quick_item i {
@@ -542,7 +557,7 @@ a._pc, button._pc { display: inline-flex; }
 
 .quick_menu .quick_item span {
   font-size: 10px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.3px;
   line-height: 1;
 }
@@ -651,7 +666,6 @@ a._pc, button._pc { display: inline-flex; }
     padding: 0 20px;
   }
 
-  /* Mobile Navigation Slide-out Drawer */
   .hsec1 .lnbG {
     position: fixed;
     top: 0;

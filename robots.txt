@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://m.thankqcamping.com/resv/view.hbb?cseq=20430/sitemap.xml

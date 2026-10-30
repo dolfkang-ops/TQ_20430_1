@@ -1,10 +1,10 @@
 /* ==========================================================================
-   THE SUNSET CAMPING - COMMON STYLESHEET (With Button Font Update)
+   THE SUNSET CAMPING - COMMON STYLESHEET (High-Contrast Crisp Mobile UI)
    ========================================================================== */
 
 /* Google Fonts & Premium Typography */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+KR:wght@300;400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
-/* Pretendard & GmarketSans for Modern High-Impact Action Buttons */
+/* Pretendard for Modern High-Impact Action Buttons */
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 
 /* --- Root Design System --- */
@@ -113,15 +113,15 @@ button {
   width: 100%;
   z-index: 1000;
   transition: background-color 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.45) 60%, rgba(0, 0, 0, 0) 100%);
   padding: 18px 0;
 }
 
 .hsec1.scrolled {
-  background: rgba(18, 18, 22, 0.95);
+  background: rgba(18, 18, 22, 0.96);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
   padding: 12px 0;
 }
 
@@ -131,7 +131,7 @@ button {
   justify-content: space-between;
 }
 
-/* Brand Logo (Using Refined Cinzel Font) */
+/* Brand Logo */
 .hsec1 h1.logo {
   margin: 0;
   line-height: 1;
@@ -179,7 +179,7 @@ button {
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 3px;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
   margin-top: 3px;
   white-space: nowrap;
 }
@@ -280,7 +280,7 @@ button {
   display: block;
   padding: 9px 20px;
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.85);
   white-space: nowrap;
   transition: all 0.2s ease;
   text-align: left;
@@ -292,7 +292,7 @@ button {
   padding-left: 24px;
 }
 
-/* Header Right Buttons with Updated Button Font */
+/* Header Right Buttons */
 .hsec1 .gnbG {
   display: flex;
   align-items: center;
@@ -345,24 +345,27 @@ button {
   background: rgba(255, 255, 255, 0.18);
 }
 
-/* Mobile Hamburger Toggle Button */
+/* Mobile Hamburger Toggle Button (High-Contrast Crisp Style) */
 .lnbG_open {
   display: none;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
+  color: #ffffff !important;
   font-size: 22px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.12);
-  transition: background 0.2s ease;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  background: rgba(24, 24, 30, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  transition: all 0.2s ease;
 }
 
-.lnbG_open:hover {
-  background: rgba(255, 255, 255, 0.22);
+.lnbG_open:hover, .lnbG_open:active {
+  background: var(--main-color);
+  border-color: var(--main-color);
+  transform: scale(1.05);
 }
 
 /* Desktop vs Mobile Class Handling */
@@ -534,7 +537,7 @@ a._pc, button._pc { display: inline-flex; }
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: rgba(22, 22, 27, 0.92);
+  background: rgba(22, 22, 27, 0.94);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   color: #ffffff;
@@ -543,7 +546,7 @@ a._pc, button._pc { display: inline-flex; }
   align-items: center;
   justify-content: center;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
   position: relative;
   text-align: center;
@@ -654,35 +657,80 @@ a._pc, button._pc { display: inline-flex; }
 }
 
 /* ==========================================================================
-   RESPONSIVE NAVIGATION (max-width: 1024px)
+   HIGH-CONTRAST CRISP MOBILE NAVIGATION (max-width: 1024px)
+   Solves Blurry/Dim Menu Bar Issue Completely
    ========================================================================== */
 @media all and (max-width: 1024px) {
   ._pc { display: none !important; }
   ._mo { display: block !important; }
   span._mo { display: inline !important; }
-  .lnbG_open { display: flex !important; }
+
+  /* 1. Mobile Header: Solid, Crisp, High-Contrast Bar */
+  .hsec1 {
+    background: rgba(16, 16, 20, 0.98) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    padding: 12px 0;
+  }
 
   .hsec1 .container.wide {
     padding: 0 20px;
   }
 
+  /* Logo Clarity on Mobile */
+  .hsec1 .logo-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 17px;
+  }
+
+  .hsec1 .logo-en {
+    font-size: 19px;
+    letter-spacing: 2px;
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .hsec1 .logo-ko {
+    font-size: 11.5px;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* 2. Mobile Hamburger Button: Crisp, Solid, High Visibility */
+  .lnbG_open {
+    display: flex !important;
+    width: 44px;
+    height: 44px;
+    background: #24242d !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+    color: #ffffff !important;
+    font-size: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  /* 3. Mobile Navigation Slide-out Drawer: Crisp Dark Theme */
   .hsec1 .lnbG {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 320px;
-    max-width: 85vw;
+    width: 330px;
+    max-width: 86vw;
     height: 100vh;
     height: 100dvh;
-    background: #18181e;
+    background: #15151b !important;
     z-index: 1100;
     flex-direction: column;
     align-items: stretch;
-    padding: 24px 20px 40px;
-    box-shadow: -10px 0 35px rgba(0, 0, 0, 0.55);
+    padding: 24px 22px 40px;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.7);
     transition: right 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .hsec1 .lnbG.open {
@@ -696,9 +744,9 @@ a._pc, button._pc { display: inline-flex; }
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     z-index: 1050;
     opacity: 0;
     visibility: hidden;
@@ -710,28 +758,36 @@ a._pc, button._pc { display: inline-flex; }
     visibility: visible;
   }
 
+  /* Mobile Drawer Header */
   .hsec1 .lnbG .mobile-header {
     display: flex !important;
     justify-content: space-between;
     align-items: center;
     padding-bottom: 20px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 22px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   }
 
   .hsec1 .lnbG .close {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
+    background: #252530;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
     color: #ffffff;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 19px;
+    transition: background 0.2s ease;
   }
 
+  .hsec1 .lnbG .close:hover {
+    background: var(--main-color);
+  }
+
+  /* Mobile Menu Items: Bold, Crisp, High Contrast */
   .hsec1 .menu {
     flex-direction: column;
     align-items: stretch;
@@ -740,34 +796,65 @@ a._pc, button._pc { display: inline-flex; }
 
   .hsec1 .menu > li {
     padding: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .hsec1 .menu > li > a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 4px;
-    font-size: 16px;
-    color: #ffffff;
+    padding: 16px 6px;
+    font-size: 16.5px;
+    font-weight: 700;
+    color: #ffffff !important;
+    letter-spacing: -0.2px;
   }
 
   .hsec1 .menu > li > a::after {
     display: none;
   }
 
+  /* Dropdown Chevron Indicator for Mobile */
+  .hsec1 .menu > li > a::after {
+    display: block;
+    content: '\f107';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    width: auto;
+    height: auto;
+    border: none;
+    background: none;
+    transition: transform 0.25s ease, color 0.25s ease;
+  }
+
+  .hsec1 .menu > li:last-child > a::after {
+    display: none; /* 실시간예약에는 화살표 제외 */
+  }
+
+  .hsec1 .menu > li.active > a::after {
+    transform: rotate(180deg);
+    color: var(--main-color);
+  }
+
+  .hsec1 .menu > li.active > a {
+    color: #ffbc85 !important;
+  }
+
+  /* Mobile Submenu Box: Crisp Solid Background & Clear Text */
   .hsec1 .menu > li .sub {
     position: static;
     transform: none !important;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    background: rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    padding: 6px 12px;
-    margin-bottom: 12px;
-    border: none;
-    box-shadow: none;
+    background: #1f1f28 !important;
+    border-radius: 10px;
+    padding: 8px 10px;
+    margin-bottom: 14px;
+    border-left: 3px solid var(--main-color);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.25);
     display: none;
   }
 
@@ -776,11 +863,22 @@ a._pc, button._pc { display: inline-flex; }
   }
 
   .hsec1 .menu > li .sub dd a {
-    padding: 8px 10px;
-    font-size: 13.5px;
-    color: rgba(255, 255, 255, 0.7);
+    padding: 10px 14px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: #e2e2ec !important;
+    border-radius: 6px;
+    transition: all 0.2s ease;
   }
 
+  .hsec1 .menu > li .sub dd a:hover,
+  .hsec1 .menu > li .sub dd a:active {
+    background: rgba(217, 111, 39, 0.25);
+    color: #ffbc85 !important;
+    padding-left: 18px;
+  }
+
+  /* Quick Floating Menu Mobile */
   #footer .fsec1 .container {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -793,15 +891,19 @@ a._pc, button._pc { display: inline-flex; }
   }
 
   .quick_menu .quick_item {
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
+    background: #181820;
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
   }
 
   .quick_menu .quick_item i {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .quick_menu .quick_item span {
-    font-size: 9px;
+    font-size: 9.5px;
+    font-weight: 700;
   }
 }

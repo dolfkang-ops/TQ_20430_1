@@ -1,0 +1,793 @@
+/* ==========================================================================
+   THE SUNSET CAMPING - COMMON STYLESHEET (Refined & Perfected)
+   Faithfully inspired by https://www.moonlightcamp.kr/css/common.css
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+/* --- Root Design System --- */
+:root {
+  --main-color: #d96f27;        /* 따뜻하고 세련된 선셋 골드 오렌지 */
+  --main-hover: #b85717;
+  --sub-color: #ad7812;         /* 문라이트캠프 시그니처 웜 골드 */
+  --point-color: #2b5c46;       /* 내추럴 딥 포레스트 그린 */
+  --dark-color: #16161a;        /* 럭셔리 다크 */
+  --dark-light: #26272e;
+  --text-dark: #222222;
+  --text-mid: #555555;
+  --text-light: #888888;
+  --bg-light: #f9f7f4;
+  --bg-subtle: #f2eee8;
+  --border-color: #e5e0d8;
+  --border-light: rgba(255, 255, 255, 0.15);
+  --white: #ffffff;
+  
+  --tit-font: 'Playfair Display', Georgia, serif;
+  --body-font: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* --- Global Reset & Normalization --- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--body-font);
+  color: var(--text-dark);
+  background-color: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+li { list-style: none; }
+img { border: 0; max-width: 100%; height: auto; vertical-align: top; }
+h1, h2, h3, h4, h5, h6, strong, b, dt, em { font-weight: 600; }
+em, i { font-style: normal; }
+
+a, a:hover, a:active, a:focus {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s ease;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.fontP {
+  font-family: var(--tit-font) !important;
+}
+
+/* --- Container Wrappers --- */
+.container {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+  width: 100%;
+}
+
+.container.wide {
+  max-width: 1680px;
+  padding: 0 40px;
+  width: 100%;
+}
+
+.center { text-align: center; }
+
+/* ==========================================================================
+   HEADER & GNB NAVIGATION (.hsec1)
+   Moonlightcamp Style Glassmorphism & Dropdown Navigation
+   ========================================================================== */
+.hsec1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: background-color 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 100%);
+  padding: 18px 0;
+}
+
+.hsec1.scrolled {
+  background: rgba(18, 18, 22, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+  padding: 12px 0;
+}
+
+.hsec1 .container.wide {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand Logo */
+.hsec1 h1.logo {
+  margin: 0;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.hsec1 h1.logo a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #ffffff;
+}
+
+.hsec1 .logo-icon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--main-color), #f79d5c);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 20px;
+  box-shadow: 0 4px 15px rgba(217, 111, 39, 0.4);
+  flex-shrink: 0;
+}
+
+.hsec1 .logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.hsec1 .logo-en {
+  font-family: var(--tit-font);
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: #ffffff;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.hsec1 .logo-ko {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 3px;
+  white-space: nowrap;
+}
+
+/* Desktop Navigation (LNB) */
+.hsec1 .lnbG {
+  display: flex;
+  align-items: center;
+}
+
+.hsec1 .menu {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.hsec1 .menu > li {
+  position: relative;
+  padding: 14px 0;
+}
+
+.hsec1 .menu > li > a {
+  font-size: 17px;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  padding: 6px 4px;
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.hsec1 .menu > li > a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--main-color);
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hsec1 .menu > li:hover > a {
+  color: #ffbc85;
+}
+
+.hsec1 .menu > li:hover > a::after {
+  width: 100%;
+}
+
+/* Sub Dropdown Menu with Hover Bridge (No gap closing bug) */
+.hsec1 .menu > li .sub {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(22, 22, 26, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  min-width: 180px;
+  border-radius: 10px;
+  padding: 12px 0;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  pointer-events: none;
+}
+
+/* Invisible bridge so mouse doesn't drop hover when moving from menu to sub */
+.hsec1 .menu > li .sub::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+}
+
+.hsec1 .menu > li:hover .sub {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.hsec1 .menu > li .sub dl {
+  display: flex;
+  flex-direction: column;
+}
+
+.hsec1 .menu > li .sub dd {
+  margin: 0;
+}
+
+.hsec1 .menu > li .sub dd a {
+  display: block;
+  padding: 9px 20px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.hsec1 .menu > li .sub dd a:hover {
+  background: rgba(217, 111, 39, 0.2);
+  color: #ffbc85;
+  padding-left: 24px;
+}
+
+/* Header Right Buttons (GNB) */
+.hsec1 .gnbG {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.btn-header-rsvt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--main-color), #eb8238);
+  color: #ffffff !important;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(217, 111, 39, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  white-space: nowrap;
+}
+
+.btn-header-rsvt:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(217, 111, 39, 0.5);
+  background: linear-gradient(135deg, #eb8238, var(--main-color));
+}
+
+.btn-header-map {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #ffffff !important;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 9px 18px;
+  border-radius: 30px;
+  backdrop-filter: blur(4px);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.btn-header-map:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Mobile Hamburger Toggle Button */
+.lnbG_open {
+  display: none;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 22px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  transition: background 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.lnbG_open:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Desktop vs Mobile Class Handling */
+._mo { display: none !important; }
+._pc { display: block; }
+div._pc, section._pc, article._pc { display: block; }
+span._pc { display: inline; }
+a._pc, button._pc { display: inline-flex; }
+
+/* ==========================================================================
+   FOOTER (footer, fsec1)
+   Moonlightcamp Style Two-Tone Dark Footer
+   ========================================================================== */
+#footer {
+  background: #121215;
+  color: #9898a4;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 10;
+}
+
+#footer .fsec1 {
+  padding: 70px 0 50px;
+}
+
+#footer .fsec1 .container {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 60px;
+}
+
+.footer-brand .ft-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.footer-brand .ft-logo-en {
+  font-family: var(--tit-font);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #ffffff;
+}
+
+.footer-brand .ft-logo-ko {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.footer-brand .ft-desc {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #888894;
+  margin-bottom: 24px;
+}
+
+.footer-brand .ft-sns {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-brand .ft-sns a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b0b0b8;
+  font-size: 17px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.25s ease;
+}
+
+.footer-brand .ft-sns a:hover {
+  background: var(--main-color);
+  color: #ffffff;
+  border-color: var(--main-color);
+  transform: translateY(-3px);
+}
+
+.company_con {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.company_con .quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.company_con .quick-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  transition: color 0.2s ease;
+}
+
+.company_con .quick-links a:hover {
+  color: var(--main-color);
+}
+
+.company_con .quick-links a.highlight {
+  color: #ffbc85;
+  font-weight: 600;
+}
+
+.company_con .contactG {
+  margin-bottom: 20px;
+}
+
+.company_con .contactG .tit {
+  font-family: var(--tit-font);
+  font-size: 18px;
+  color: #ffffff;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.company_con .contactG .info {
+  font-size: 13.5px;
+  line-height: 1.95;
+  color: #92929c;
+}
+
+.company_con .contactG .info i {
+  display: inline-block;
+  width: 1px;
+  height: 11px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+.company_con .contactG .info strong {
+  color: #ffffff;
+}
+
+.company_con .copyright {
+  font-size: 12.5px;
+  color: #666672;
+  margin-top: 10px;
+}
+
+/* ==========================================================================
+   QUICK FLOATING MENU (.quick_menu, .gotop)
+   ========================================================================== */
+.quick_menu {
+  position: fixed;
+  right: 28px;
+  bottom: 36px;
+  z-index: 990;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quick_menu .quick_item {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(22, 22, 27, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  text-align: center;
+}
+
+.quick_menu .quick_item i {
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+.quick_menu .quick_item span {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  line-height: 1;
+}
+
+.quick_menu .quick_item:hover {
+  transform: translateY(-4px) scale(1.06);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+}
+
+.quick_menu .quick_item.rsvt {
+  background: linear-gradient(135deg, var(--main-color), #f79d5c);
+  border: none;
+  box-shadow: 0 8px 25px rgba(217, 111, 39, 0.45);
+}
+
+.quick_menu .quick_item.gotop {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.quick_menu .quick_item.gotop.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   MODAL POPUP SYSTEM
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 20px;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: #ffffff;
+  border-radius: 18px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.45);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #333333;
+  z-index: 10;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: rgba(0, 0, 0, 0.12);
+  transform: rotate(90deg);
+}
+
+/* ==========================================================================
+   RESPONSIVE NAVIGATION (max-width: 1024px)
+   ========================================================================== */
+@media all and (max-width: 1024px) {
+  ._pc { display: none !important; }
+  ._mo { display: block !important; }
+  span._mo { display: inline !important; }
+  .lnbG_open { display: flex !important; }
+
+  .hsec1 .container.wide {
+    padding: 0 20px;
+  }
+
+  /* Mobile Navigation Slide-out Drawer */
+  .hsec1 .lnbG {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 320px;
+    max-width: 85vw;
+    height: 100vh;
+    height: 100dvh;
+    background: #18181e;
+    z-index: 1100;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 24px 20px 40px;
+    box-shadow: -10px 0 35px rgba(0, 0, 0, 0.55);
+    transition: right 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .hsec1 .lnbG.open {
+    right: 0;
+  }
+
+  .lnbG_bg {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 1050;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .lnbG_bg.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hsec1 .lnbG .mobile-header {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .hsec1 .lnbG .close {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  .hsec1 .menu {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .hsec1 .menu > li {
+    padding: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .hsec1 .menu > li > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 4px;
+    font-size: 16px;
+    color: #ffffff;
+  }
+
+  .hsec1 .menu > li > a::after {
+    display: none;
+  }
+
+  .hsec1 .menu > li .sub {
+    position: static;
+    transform: none !important;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    border: none;
+    box-shadow: none;
+    display: none;
+  }
+
+  .hsec1 .menu > li.active .sub {
+    display: block;
+  }
+
+  .hsec1 .menu > li .sub dd a {
+    padding: 8px 10px;
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  #footer .fsec1 .container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .quick_menu {
+    right: 16px;
+    bottom: 20px;
+    gap: 10px;
+  }
+
+  .quick_menu .quick_item {
+    width: 48px;
+    height: 48px;
+  }
+
+  .quick_menu .quick_item i {
+    font-size: 16px;
+  }
+
+  .quick_menu .quick_item span {
+    font-size: 9px;
+  }
+}
